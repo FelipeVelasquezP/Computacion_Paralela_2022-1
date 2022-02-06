@@ -10,7 +10,6 @@ using namespace std;
 */
 
 main(){
-	
 	/*Definicion de Variables*/
 	int tipo, km,tm,importe;
 	
@@ -24,26 +23,22 @@ main(){
 	cout<<menu;
 	cin>>tipo;
 	
-	
 	while(tipo>5 || tipo<0){
 		cout<<"\n La opcion seleccionada no existe \n\n: "<<menu;
 		cin>>tipo;
 	}
-	
 	
 	/*Se realizan los calculos de a cuerdo al tipo de vehiculo*/
 	switch(tipo) {
 	   case 1  :
 	      importe=100;
 	      break; 
-	      
 	   case 2  :
 	   case 3  :
 	   	  cout<<"Digite la cantidad de Kilometros: ";
 	   	  cin>>km;
 	   	  importe=30*km;
 	      break; 
-	    
 	    case 4:
 	   	  cout<<"Digite la cantidad de Kilometros: ";
 	   	  cin>>km;
@@ -51,15 +46,15 @@ main(){
 	   	  cin>>tm;	    	
 	      importe=30*km+25*tm;
 	      break;
-	    
 	    case 5:
 	      return 0;
 	    	
-	  
 	}
 	cout<<" \n******El importe total es "<<importe<<"******\n";
 
 }
+
+
 
 
 
