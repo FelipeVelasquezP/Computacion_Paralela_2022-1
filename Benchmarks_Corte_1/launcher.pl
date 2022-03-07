@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 #   Date: 17/02/2022
-#   Author: Andres C. Lopez R.
+#   Authors :Andres C. Lopez R.,Oscar J. Reyes T., Luis F. Velasquez P.
 #   Subjebt: Paralell Computation.
 #   Topic: Design of experiments, 
 #   automation of execution (average and deviation).
