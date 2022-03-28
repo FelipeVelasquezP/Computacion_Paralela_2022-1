@@ -1,5 +1,5 @@
 /*Fecha: 08/02/2022
-* Autor: Luis F. Velasquez P.
+* Autor: Luis Felipe Velasquez Puentes
 * Subject: Parallel and Distributed Computing.
 * Topic: Construction of the first Benchmark
 * Description: Application that allows evaluating the performance
@@ -18,9 +18,15 @@ void initMatrix(int SZ, double *Ma, double *Mb, double *Mr);
 void printMatrix(int SZ, double *M);
 void matrixMultiplyMM1c(int size, double *Ma, double *Mb, double *Mr);
 void matrixMultiplyMM1f(int size, double *Ma, double *Mb, double *Mr);
-double **reservaMEM(int size);
-void IniciarMatriz(double **matA,double **matB,double **matB,int size);
-printMatriz(double **matriz,int size);
+//Prototipo de funciones Posix
+double ** ReservaMEM(int size);
+void IniciarMatriz(double **matA, 
+                   double **matB, 
+                   double **matC, int size);
+                   
+                   
+void printMatriz(double **matriz, int size);
+                 
 
 
 #endif

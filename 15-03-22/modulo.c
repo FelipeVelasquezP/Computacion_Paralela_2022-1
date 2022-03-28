@@ -1,5 +1,5 @@
 /*Fecha: 08/02/2022
-* Autor: Luis F. Velasquez P.
+* Autor: Luis Felipe Velasquez Puentes
 * Subject: Parallel and Distributed Computing.
 * Topic: Construction of the first Benchmark
 * Description: Application that allows evaluating the performance
@@ -34,7 +34,7 @@ void sampleEnd(){
 	double totalTime;
 	totalTime = (fin.tv_sec - inicio.tv_sec)*1e9;
 	totalTime = (totalTime + (fin.tv_nsec - inicio.tv_nsec))*1e-9;
-	printf ("\nTotal time: %f seg \n", totalTime);
+	printf ("\n%f\n", totalTime);
 }
 /*	@brief: Function that generates a random number 
 	@return: Random number between 0.001 and 9.999 with double precision
@@ -142,45 +142,84 @@ void matrixMultiplyMM1f(int size, double *Ma, double *Mb, double *Mr){
 	}
 }
 
+/*Funcion a ser enviada a cada hilo,que realiza la multiplicación de matrices. La matriz A,
+	Se divide por porciones,en funcion de la dimensión y del numero de hilos que requiere
+	el usuario.
+	Nota: La función sera de tipo void, la cual retornará un waning potencial de riesgo.
+	Pesnsar en esto para mejorarla*/
 
-/*** FUNCIONES PARA EL PROGRAMA DE PTHREADS***/
+void *multMM(void *arg){
+		struct arg_struct { 
+     int N;
+     int Nthreads;
+     double **Ma;
+     double **Mb;
+     double **Mc;
+     int idThread;
+    };
+
+	struct arg_struct *args = arg;
+	printf("%d\n", (args -> N));
+}
 
 
-/*Función reserva de memoria para las matrices de doble puntero*/
-double **reservaMEM(int size){
-	/*Reservamos memoria de dimension NxN double contigua*/
+
+
+
+/*** FUNCIONES PARA EL PROGRAMA DE PTHREADS ***/
+/* 2. --> Función Reserva de Memoria para las matrices de doble puntero */
+double ** ReservaMEM(int size){
+	//Reservamos memoria de dimensión NxN double contigua
 	double * valor = (double *) malloc(size*size*sizeof(double));
-
-	/*Reserva de un vector de punteros double con dimension size*/
-	double ** ptr=(double **) malloc(size*size*sizeof(double *));
-
-	/*Iteración para que cada puntero posicione en la reserva Mem*/
-	for (int i=0; i < size; ++i){
-		ptr[i]=&valor[i*size];
-	}
+	
+	//Reserva de un vector de 'punteros double' con dimensión size
+	double ** ptr = (double **) malloc(size*size*sizeof(double *));
+	
+	//Iteración para que cada puntero posicione en la reserva Mem
+	for(int i = 0; i < size; ++i)
+		ptr[i] = &valor[i*size];
+		
+	
 	return ptr;
 }
 
-	/*Función de Inicilización de las matrices*/
-	void IniciarMatriz(double **matA,double **matB,double **matB,int size){
-		int i,j;
-		for(int i=0;i<size;++i){
-			for(int j=0;j<size;++j){
-				matA[i][j]=3.9*(i-j);
-				matB[i][j]=2.0*(j+i);
-				matC[i][j]=0.0
-			}	
+/* 3. -->Función de Inicialización de las matrices.*/
+void IniciarMatriz(double **matA, 
+                   double **matB, 
+                   double **matC, int size){
+	int i, j;
+	
+	for(i = 0; i < size; ++i){
+		for(j = 0; j < size; ++j){
+			matA[i][j] = 3.9*(i-j);
+			matB[i][j] = 2.0*(i+j);
+			matC[i][j] = 0.0;
 		}
 	}
+	
+	
 
-/* Se nesesita función para impresion de matrices (doble puntero).*/
-void printMatriz(double **matriz,int size){
-	int i,j;
-		for(int i=0;i<size;++i){
-			for(int j=0;j<size;++j){
-				printf(" % lf ",matriz[i][j])
-			}
-			printf('\n')
-		}
-		printf('\n-----------\n')
+	
 }
+
+/* 6. Se necesita función para impresión de matrices (doble puntero). */
+void printMatriz(double **matriz, int size){
+	int i,j;
+	
+	for(i = 0; i < size; ++i){
+		for(j = 0; j < size; ++j){
+			printf(" % lf", matriz[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n-----------------\n");
+
+
+
+}
+
+
+
+
+
+
