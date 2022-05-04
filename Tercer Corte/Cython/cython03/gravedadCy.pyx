@@ -38,7 +38,7 @@ cdef void single_step(Planet planet, double dt) nogil:
 	planet.vy += dt*Fy/planet.m
 	planet.vz += dt*Fz/planet.m
 			
-cdef step_time(Planet planet, double time_span,int n_steps):
+cpdef step_time(Planet planet, double time_span,int n_steps):
 	cdef double dt
 	cdef int j
 	dt = time_span/n_steps
